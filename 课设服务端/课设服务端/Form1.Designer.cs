@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.labelTitle = new System.Windows.Forms.Label();
             this.labelIp = new System.Windows.Forms.Label();
             this.textIP = new System.Windows.Forms.TextBox();
@@ -58,13 +59,14 @@
             this.labelIp.Location = new System.Drawing.Point(60, 98);
             this.labelIp.Name = "labelIp";
             this.labelIp.Size = new System.Drawing.Size(70, 27);
-            this.labelIp.TabIndex = 1;
+            this.labelIp.TabIndex = 0;
             this.labelIp.Text = "灯光IP";
             // 
             // textIP
             // 
             this.textIP.Font = new System.Drawing.Font("Consolas", 10F);
             this.textIP.Location = new System.Drawing.Point(135, 100);
+            this.textIP.MaxLength = 15;
             this.textIP.Name = "textIP";
             this.textIP.Size = new System.Drawing.Size(214, 27);
             this.textIP.TabIndex = 2;
@@ -73,9 +75,10 @@
             // 
             this.textPort.Font = new System.Drawing.Font("Consolas", 10F);
             this.textPort.Location = new System.Drawing.Point(430, 100);
+            this.textPort.MaxLength = 5;
             this.textPort.Name = "textPort";
             this.textPort.Size = new System.Drawing.Size(100, 27);
-            this.textPort.TabIndex = 4;
+            this.textPort.TabIndex = 3;
             // 
             // labelPort
             // 
@@ -84,7 +87,7 @@
             this.labelPort.Location = new System.Drawing.Point(372, 98);
             this.labelPort.Name = "labelPort";
             this.labelPort.Size = new System.Drawing.Size(52, 27);
-            this.labelPort.TabIndex = 3;
+            this.labelPort.TabIndex = 0;
             this.labelPort.Text = "端口";
             // 
             // labelFreq
@@ -94,16 +97,17 @@
             this.labelFreq.Location = new System.Drawing.Point(130, 49);
             this.labelFreq.Name = "labelFreq";
             this.labelFreq.Size = new System.Drawing.Size(134, 27);
-            this.labelFreq.TabIndex = 5;
+            this.labelFreq.TabIndex = 0;
             this.labelFreq.Text = "通信频率(ms)";
             // 
             // textFreq
             // 
             this.textFreq.Font = new System.Drawing.Font("Consolas", 10F);
             this.textFreq.Location = new System.Drawing.Point(266, 51);
+            this.textFreq.MaxLength = 5;
             this.textFreq.Name = "textFreq";
             this.textFreq.Size = new System.Drawing.Size(100, 27);
-            this.textFreq.TabIndex = 6;
+            this.textFreq.TabIndex = 1;
             // 
             // labelLight
             // 
@@ -112,7 +116,7 @@
             this.labelLight.Location = new System.Drawing.Point(182, 191);
             this.labelLight.Name = "labelLight";
             this.labelLight.Size = new System.Drawing.Size(78, 23);
-            this.labelLight.TabIndex = 7;
+            this.labelLight.TabIndex = 0;
             this.labelLight.Text = "亮度指标";
             // 
             // textLight
@@ -121,16 +125,17 @@
             this.textLight.Location = new System.Drawing.Point(266, 189);
             this.textLight.Name = "textLight";
             this.textLight.Size = new System.Drawing.Size(100, 27);
-            this.textLight.TabIndex = 9;
+            this.textLight.TabIndex = 4;
             // 
             // buttonSet
             // 
-            this.buttonSet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonSet.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonSet.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSet.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.buttonSet.Location = new System.Drawing.Point(0, 305);
             this.buttonSet.Name = "buttonSet";
             this.buttonSet.Size = new System.Drawing.Size(582, 48);
-            this.buttonSet.TabIndex = 10;
+            this.buttonSet.TabIndex = 5;
             this.buttonSet.Text = "设定";
             this.buttonSet.UseVisualStyleBackColor = true;
             this.buttonSet.Click += new System.EventHandler(this.buttonSet_Click);
@@ -139,7 +144,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(582, 353);
             this.Controls.Add(this.buttonSet);
             this.Controls.Add(this.textLight);
@@ -151,6 +155,7 @@
             this.Controls.Add(this.textIP);
             this.Controls.Add(this.labelIp);
             this.Controls.Add(this.labelTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(600, 400);
             this.MinimumSize = new System.Drawing.Size(600, 400);

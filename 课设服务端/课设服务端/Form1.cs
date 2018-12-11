@@ -36,6 +36,9 @@ namespace 课设服务端
                 int.TryParse(temp, out numTemp);
                 ts.setLight(numTemp);//亮度值 
                 MessageBox.Show("设定成功！");
+                control form2 = new control();
+                this.Hide();
+                form2.ShowDialog();
             }
         }
     }
