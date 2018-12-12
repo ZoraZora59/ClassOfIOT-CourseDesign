@@ -11,24 +11,31 @@ namespace 课设服务端
 {
     public partial class control : Form
     {
+
         public control()
         {
             InitializeComponent();
         }
-
+        transducerServer ts;
         private void control_FormClosed(object sender, FormClosedEventArgs e)
         {
+            ts.socketServerClose();
             System.Environment.Exit(0);
         }
 
         private void buttonOn_Click(object sender, EventArgs e)
         {
-            System.Console.WriteLine(transducerServer.ip);
+            ts.ctrlLightOn();
         }
-
         private void control_Load(object sender, EventArgs e)
         {
-            transducerServer ts = new transducerServer();
+            ts = new transducerServer();
+            ts.socketServerCreate();
+        }
+
+        private void buttonOff_Click(object sender, EventArgs e)
+        {
+            ts.ctrlLightOff();
         }
     }
 }

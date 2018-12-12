@@ -56,6 +56,7 @@
             this.buttonOff.TabIndex = 1;
             this.buttonOff.Text = "关灯";
             this.buttonOff.UseVisualStyleBackColor = true;
+            this.buttonOff.Click += new System.EventHandler(this.buttonOff_Click);
             // 
             // buttonOn
             // 
