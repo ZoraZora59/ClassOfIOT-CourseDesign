@@ -23,12 +23,12 @@ namespace 课设服务端
 
         private void buttonOn_Click(object sender, EventArgs e)
         {
-            transducerServer ts = new transducerServer();
             System.Console.WriteLine(transducerServer.ip);
         }
 
         private void control_Load(object sender, EventArgs e)
         {
+            transducerServer ts = new transducerServer();
         }
     }
 }
