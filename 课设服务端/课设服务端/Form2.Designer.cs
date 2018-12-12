@@ -65,6 +65,7 @@
             this.buttonOn.TabIndex = 0;
             this.buttonOn.Text = "开灯";
             this.buttonOn.UseVisualStyleBackColor = true;
+            this.buttonOn.Click += new System.EventHandler(this.buttonOn_Click);
             // 
             // labelState
             // 
@@ -125,6 +126,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "物联网智能控制面板";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.control_FormClosed);
+            this.Load += new System.EventHandler(this.control_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
