@@ -13,8 +13,7 @@ namespace 课设服务端
 
     public partial class main : Form
     {
-        transducerServer trans;
-        transducerServer curtain;
+        transducerServer ts;
         public main()
         {
             InitializeComponent();
@@ -22,24 +21,23 @@ namespace 课设服务端
 
         private void buttonSet_Click(object sender, EventArgs e)
         {
-            trans = new transducerServer();
-            curtain = new transducerServer();
-            curtain.ip = this.textCurtainIP.Text;//IP
-            trans.ip = this.textTranLightIP.Text;
+            ts = new transducerServer();
+            transducerServer.curtainIp = this.textCurtainIP.Text;//IP
+            transducerServer.transIp = this.textTranLightIP.Text;
             var temp = this.textFreq.Text;
             int numTemp;
             int.TryParse(temp, out numTemp);
             transducerServer.freq = numTemp;//频率
             temp = this.textCurtainPort.Text;
             int.TryParse(temp, out numTemp);
-            curtain.port = numTemp;//端口
+            transducerServer.curtainPort = numTemp;//端口
             temp = this.textTranLightPort.Text;
             int.TryParse(temp, out numTemp);
-            trans.port = numTemp;
+            transducerServer.transPort = numTemp;
             temp = this.textLight.Text;
             int.TryParse(temp, out numTemp);
             transducerServer.light = numTemp;//亮度值 
-            if (trans.socketServerCreate() && curtain.socketServerCreate())
+            if (ts.socketCurtainCreate()&&ts.socketTransCreate())
             {
                 createSocket();
             }
@@ -59,10 +57,10 @@ namespace 课设服务端
         private void main_Load(object sender, EventArgs e)
         {
             textFreq.Text = "5000";
-            textCurtainIP.Text = "192.168.0.66";
-            textCurtainPort.Text = "8124";
-            textTranLightIP.Text = "192.168.0.";
-            textTranLightPort.Text = "4001";
+            textCurtainIP.Text = "127.0.0.1";
+            textCurtainPort.Text = "7777";
+            textTranLightIP.Text = "127.0.0.1";
+            textTranLightPort.Text = "6666";
         }
     }
 }

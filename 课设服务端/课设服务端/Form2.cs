@@ -35,11 +35,12 @@ namespace 课设服务端
         private void control_Load(object sender, EventArgs e)
         {
             ts = new transducerServer();
-            ts.socketServerCreate();
-
             ts.thStart();
-            this.thStart();
+
+            this.timer1.Interval = 1000;
+            this.timer1.Start();
         }
+
         private void thStart()
         {
             Thread showlabelLight = new Thread(new ThreadStart(showLight));
@@ -52,6 +53,12 @@ namespace 课设服务端
                 labelLight.Text = transducerServer.light.ToString();
                 Thread.Sleep(transducerServer.freq);
             }
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            labelLight.Text = transducerServer.light.ToString();
         }
     }
 }

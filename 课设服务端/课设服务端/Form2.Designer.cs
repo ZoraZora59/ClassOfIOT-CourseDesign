@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(control));
             this.labelTitle = new System.Windows.Forms.Label();
             this.buttonOff = new System.Windows.Forms.Button();
             this.buttonOn = new System.Windows.Forms.Button();
             this.labelLight = new System.Windows.Forms.Label();
             this.labelViewLight = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // labelTitle
@@ -86,6 +88,10 @@
             this.labelViewLight.TabIndex = 0;
             this.labelViewLight.Text = "当前亮度：";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -116,5 +122,6 @@
         private System.Windows.Forms.Button buttonOn;
         private System.Windows.Forms.Label labelLight;
         private System.Windows.Forms.Label labelViewLight;
+        private System.Windows.Forms.Timer timer1;
     }
 }
