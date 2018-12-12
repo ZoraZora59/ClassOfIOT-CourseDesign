@@ -32,8 +32,6 @@
             this.labelTitle = new System.Windows.Forms.Label();
             this.buttonOff = new System.Windows.Forms.Button();
             this.buttonOn = new System.Windows.Forms.Button();
-            this.labelState = new System.Windows.Forms.Label();
-            this.labelViewState = new System.Windows.Forms.Label();
             this.labelLight = new System.Windows.Forms.Label();
             this.labelViewLight = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -50,49 +48,29 @@
             // 
             // buttonOff
             // 
-            this.buttonOff.Location = new System.Drawing.Point(90, 208);
+            this.buttonOff.Location = new System.Drawing.Point(81, 173);
             this.buttonOff.Name = "buttonOff";
             this.buttonOff.Size = new System.Drawing.Size(114, 49);
             this.buttonOff.TabIndex = 1;
-            this.buttonOff.Text = "关灯";
+            this.buttonOff.Text = "关窗帘";
             this.buttonOff.UseVisualStyleBackColor = true;
             this.buttonOff.Click += new System.EventHandler(this.buttonOff_Click);
             // 
             // buttonOn
             // 
-            this.buttonOn.Location = new System.Drawing.Point(90, 108);
+            this.buttonOn.Location = new System.Drawing.Point(81, 68);
             this.buttonOn.Name = "buttonOn";
             this.buttonOn.Size = new System.Drawing.Size(114, 49);
             this.buttonOn.TabIndex = 0;
-            this.buttonOn.Text = "开灯";
+            this.buttonOn.Text = "开窗帘";
             this.buttonOn.UseVisualStyleBackColor = true;
             this.buttonOn.Click += new System.EventHandler(this.buttonOn_Click);
-            // 
-            // labelState
-            // 
-            this.labelState.AutoSize = true;
-            this.labelState.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelState.Location = new System.Drawing.Point(378, 196);
-            this.labelState.Name = "labelState";
-            this.labelState.Size = new System.Drawing.Size(141, 27);
-            this.labelState.TabIndex = 3;
-            this.labelState.Text = "状态（亮/灭）";
-            // 
-            // labelViewState
-            // 
-            this.labelViewState.AutoSize = true;
-            this.labelViewState.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelViewState.Location = new System.Drawing.Point(271, 196);
-            this.labelViewState.Name = "labelViewState";
-            this.labelViewState.Size = new System.Drawing.Size(112, 27);
-            this.labelViewState.TabIndex = 2;
-            this.labelViewState.Text = "当前状态：";
             // 
             // labelLight
             // 
             this.labelLight.AutoSize = true;
             this.labelLight.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelLight.Location = new System.Drawing.Point(378, 117);
+            this.labelLight.Location = new System.Drawing.Point(377, 129);
             this.labelLight.Name = "labelLight";
             this.labelLight.Size = new System.Drawing.Size(72, 27);
             this.labelLight.TabIndex = 1;
@@ -102,7 +80,7 @@
             // 
             this.labelViewLight.AutoSize = true;
             this.labelViewLight.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelViewLight.Location = new System.Drawing.Point(271, 117);
+            this.labelViewLight.Location = new System.Drawing.Point(270, 129);
             this.labelViewLight.Name = "labelViewLight";
             this.labelViewLight.Size = new System.Drawing.Size(112, 27);
             this.labelViewLight.TabIndex = 0;
@@ -112,17 +90,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 353);
-            this.Controls.Add(this.labelState);
-            this.Controls.Add(this.labelViewState);
+            this.ClientSize = new System.Drawing.Size(582, 303);
             this.Controls.Add(this.buttonOff);
             this.Controls.Add(this.buttonOn);
             this.Controls.Add(this.labelLight);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.labelViewLight);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(600, 400);
-            this.MinimumSize = new System.Drawing.Size(600, 400);
+            this.MaximumSize = new System.Drawing.Size(600, 350);
+            this.MinimumSize = new System.Drawing.Size(600, 350);
             this.Name = "control";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "物联网智能控制面板";
@@ -138,8 +114,6 @@
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Button buttonOff;
         private System.Windows.Forms.Button buttonOn;
-        private System.Windows.Forms.Label labelState;
-        private System.Windows.Forms.Label labelViewState;
         private System.Windows.Forms.Label labelLight;
         private System.Windows.Forms.Label labelViewLight;
     }

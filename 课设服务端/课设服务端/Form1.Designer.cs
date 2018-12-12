@@ -30,15 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.labelTitle = new System.Windows.Forms.Label();
-            this.labelIp = new System.Windows.Forms.Label();
-            this.textIP = new System.Windows.Forms.TextBox();
-            this.textPort = new System.Windows.Forms.TextBox();
-            this.labelPort = new System.Windows.Forms.Label();
+            this.labelCurtainIP = new System.Windows.Forms.Label();
+            this.textCurtainIP = new System.Windows.Forms.TextBox();
+            this.textCurtainPort = new System.Windows.Forms.TextBox();
+            this.labelCurtainPort = new System.Windows.Forms.Label();
             this.labelFreq = new System.Windows.Forms.Label();
             this.textFreq = new System.Windows.Forms.TextBox();
-            this.labelLight = new System.Windows.Forms.Label();
+            this.labelLightCheck = new System.Windows.Forms.Label();
             this.textLight = new System.Windows.Forms.TextBox();
             this.buttonSet = new System.Windows.Forms.Button();
+            this.textTranLightPort = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textTranLight = new System.Windows.Forms.TextBox();
+            this.labelTranLight = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -52,56 +56,58 @@
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "物联网智能控制台";
             // 
-            // labelIp
+            // labelCurtainIP
             // 
-            this.labelIp.AutoSize = true;
-            this.labelIp.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.labelIp.Location = new System.Drawing.Point(60, 98);
-            this.labelIp.Name = "labelIp";
-            this.labelIp.Size = new System.Drawing.Size(70, 27);
-            this.labelIp.TabIndex = 0;
-            this.labelIp.Text = "灯光IP";
+            this.labelCurtainIP.AutoSize = true;
+            this.labelCurtainIP.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.labelCurtainIP.Location = new System.Drawing.Point(60, 98);
+            this.labelCurtainIP.Name = "labelCurtainIP";
+            this.labelCurtainIP.Size = new System.Drawing.Size(70, 27);
+            this.labelCurtainIP.TabIndex = 0;
+            this.labelCurtainIP.Text = "窗帘IP";
             // 
-            // textIP
+            // textCurtainIP
             // 
-            this.textIP.Font = new System.Drawing.Font("Consolas", 10F);
-            this.textIP.Location = new System.Drawing.Point(135, 100);
-            this.textIP.MaxLength = 15;
-            this.textIP.Name = "textIP";
-            this.textIP.Size = new System.Drawing.Size(214, 27);
-            this.textIP.TabIndex = 2;
+            this.textCurtainIP.Font = new System.Drawing.Font("Consolas", 10F);
+            this.textCurtainIP.Location = new System.Drawing.Point(135, 100);
+            this.textCurtainIP.MaxLength = 15;
+            this.textCurtainIP.Name = "textCurtainIP";
+            this.textCurtainIP.Size = new System.Drawing.Size(214, 27);
+            this.textCurtainIP.TabIndex = 2;
             // 
-            // textPort
+            // textCurtainPort
             // 
-            this.textPort.Font = new System.Drawing.Font("Consolas", 10F);
-            this.textPort.Location = new System.Drawing.Point(430, 100);
-            this.textPort.MaxLength = 5;
-            this.textPort.Name = "textPort";
-            this.textPort.Size = new System.Drawing.Size(100, 27);
-            this.textPort.TabIndex = 3;
+            this.textCurtainPort.Font = new System.Drawing.Font("Consolas", 10F);
+            this.textCurtainPort.Location = new System.Drawing.Point(430, 100);
+            this.textCurtainPort.MaxLength = 5;
+            this.textCurtainPort.Name = "textCurtainPort";
+            this.textCurtainPort.Size = new System.Drawing.Size(100, 27);
+            this.textCurtainPort.TabIndex = 3;
             // 
-            // labelPort
+            // labelCurtainPort
             // 
-            this.labelPort.AutoSize = true;
-            this.labelPort.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.labelPort.Location = new System.Drawing.Point(372, 98);
-            this.labelPort.Name = "labelPort";
-            this.labelPort.Size = new System.Drawing.Size(52, 27);
-            this.labelPort.TabIndex = 0;
-            this.labelPort.Text = "端口";
+            this.labelCurtainPort.AutoSize = true;
+            this.labelCurtainPort.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.labelCurtainPort.Location = new System.Drawing.Point(372, 98);
+            this.labelCurtainPort.Name = "labelCurtainPort";
+            this.labelCurtainPort.Size = new System.Drawing.Size(52, 27);
+            this.labelCurtainPort.TabIndex = 0;
+            this.labelCurtainPort.Text = "端口";
             // 
             // labelFreq
             // 
             this.labelFreq.AutoSize = true;
+            this.labelFreq.Enabled = false;
             this.labelFreq.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.labelFreq.Location = new System.Drawing.Point(130, 49);
             this.labelFreq.Name = "labelFreq";
             this.labelFreq.Size = new System.Drawing.Size(134, 27);
             this.labelFreq.TabIndex = 0;
-            this.labelFreq.Text = "通信频率(ms)";
+            this.labelFreq.Text = "检测频率(ms)";
             // 
             // textFreq
             // 
+            this.textFreq.Enabled = false;
             this.textFreq.Font = new System.Drawing.Font("Consolas", 10F);
             this.textFreq.Location = new System.Drawing.Point(266, 51);
             this.textFreq.MaxLength = 5;
@@ -109,20 +115,20 @@
             this.textFreq.Size = new System.Drawing.Size(100, 27);
             this.textFreq.TabIndex = 1;
             // 
-            // labelLight
+            // labelLightCheck
             // 
-            this.labelLight.AutoSize = true;
-            this.labelLight.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.labelLight.Location = new System.Drawing.Point(182, 191);
-            this.labelLight.Name = "labelLight";
-            this.labelLight.Size = new System.Drawing.Size(78, 23);
-            this.labelLight.TabIndex = 0;
-            this.labelLight.Text = "亮度指标";
+            this.labelLightCheck.AutoSize = true;
+            this.labelLightCheck.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.labelLightCheck.Location = new System.Drawing.Point(174, 195);
+            this.labelLightCheck.Name = "labelLightCheck";
+            this.labelLightCheck.Size = new System.Drawing.Size(78, 23);
+            this.labelLightCheck.TabIndex = 0;
+            this.labelLightCheck.Text = "亮度指标";
             // 
             // textLight
             // 
             this.textLight.Font = new System.Drawing.Font("Consolas", 10F);
-            this.textLight.Location = new System.Drawing.Point(266, 189);
+            this.textLight.Location = new System.Drawing.Point(258, 195);
             this.textLight.Name = "textLight";
             this.textLight.Size = new System.Drawing.Size(100, 27);
             this.textLight.TabIndex = 4;
@@ -132,7 +138,7 @@
             this.buttonSet.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonSet.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSet.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.buttonSet.Location = new System.Drawing.Point(0, 305);
+            this.buttonSet.Location = new System.Drawing.Point(0, 255);
             this.buttonSet.Name = "buttonSet";
             this.buttonSet.Size = new System.Drawing.Size(582, 48);
             this.buttonSet.TabIndex = 5;
@@ -140,28 +146,71 @@
             this.buttonSet.UseVisualStyleBackColor = true;
             this.buttonSet.Click += new System.EventHandler(this.buttonSet_Click);
             // 
+            // textTranLightPort
+            // 
+            this.textTranLightPort.Font = new System.Drawing.Font("Consolas", 10F);
+            this.textTranLightPort.Location = new System.Drawing.Point(430, 149);
+            this.textTranLightPort.MaxLength = 5;
+            this.textTranLightPort.Name = "textTranLightPort";
+            this.textTranLightPort.Size = new System.Drawing.Size(100, 27);
+            this.textTranLightPort.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.label1.Location = new System.Drawing.Point(372, 147);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 27);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "端口";
+            // 
+            // textTranLight
+            // 
+            this.textTranLight.Font = new System.Drawing.Font("Consolas", 10F);
+            this.textTranLight.Location = new System.Drawing.Point(135, 147);
+            this.textTranLight.MaxLength = 15;
+            this.textTranLight.Name = "textTranLight";
+            this.textTranLight.Size = new System.Drawing.Size(214, 27);
+            this.textTranLight.TabIndex = 8;
+            // 
+            // labelTranLight
+            // 
+            this.labelTranLight.AutoSize = true;
+            this.labelTranLight.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.labelTranLight.Location = new System.Drawing.Point(39, 147);
+            this.labelTranLight.Name = "labelTranLight";
+            this.labelTranLight.Size = new System.Drawing.Size(90, 27);
+            this.labelTranLight.TabIndex = 7;
+            this.labelTranLight.Text = "光传感IP";
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 353);
+            this.ClientSize = new System.Drawing.Size(582, 303);
+            this.Controls.Add(this.textTranLightPort);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textTranLight);
+            this.Controls.Add(this.labelTranLight);
             this.Controls.Add(this.buttonSet);
             this.Controls.Add(this.textLight);
-            this.Controls.Add(this.labelLight);
+            this.Controls.Add(this.labelLightCheck);
             this.Controls.Add(this.textFreq);
             this.Controls.Add(this.labelFreq);
-            this.Controls.Add(this.textPort);
-            this.Controls.Add(this.labelPort);
-            this.Controls.Add(this.textIP);
-            this.Controls.Add(this.labelIp);
+            this.Controls.Add(this.textCurtainPort);
+            this.Controls.Add(this.labelCurtainPort);
+            this.Controls.Add(this.textCurtainIP);
+            this.Controls.Add(this.labelCurtainIP);
             this.Controls.Add(this.labelTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(600, 400);
-            this.MinimumSize = new System.Drawing.Size(600, 400);
+            this.MaximumSize = new System.Drawing.Size(600, 350);
+            this.MinimumSize = new System.Drawing.Size(600, 350);
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "物联网智能控制台";
+            this.Load += new System.EventHandler(this.main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,15 +219,19 @@
         #endregion
 
         private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.Label labelIp;
-        private System.Windows.Forms.TextBox textIP;
-        private System.Windows.Forms.TextBox textPort;
-        private System.Windows.Forms.Label labelPort;
+        private System.Windows.Forms.Label labelCurtainIP;
+        private System.Windows.Forms.TextBox textCurtainIP;
+        private System.Windows.Forms.TextBox textCurtainPort;
+        private System.Windows.Forms.Label labelCurtainPort;
         private System.Windows.Forms.Label labelFreq;
         private System.Windows.Forms.TextBox textFreq;
-        private System.Windows.Forms.Label labelLight;
+        private System.Windows.Forms.Label labelLightCheck;
         private System.Windows.Forms.TextBox textLight;
         private System.Windows.Forms.Button buttonSet;
+        private System.Windows.Forms.TextBox textTranLightPort;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textTranLight;
+        private System.Windows.Forms.Label labelTranLight;
     }
 }
 
