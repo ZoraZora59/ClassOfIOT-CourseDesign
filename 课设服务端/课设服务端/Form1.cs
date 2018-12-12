@@ -24,17 +24,17 @@ namespace 课设服务端
             else
             {
                 transducerServer ts = new transducerServer();
-                ts.setIp(this.textIP.Text);//IP
+                ts.ip=this.textIP.Text;//IP
                 var temp = this.textFreq.Text;
                 int numTemp;
                 int.TryParse(temp, out numTemp);
-                ts.setFreq(numTemp);//频率
+                ts.freq=numTemp;//频率
                 temp = this.textPort.Text;
                 int.TryParse(temp, out numTemp);
-                ts.setPort(numTemp);//端口
+                ts.port=numTemp;//端口
                 temp = this.textLight.Text;
                 int.TryParse(temp, out numTemp);
-                ts.setLight(numTemp);//亮度值 
+                ts.light=numTemp;//亮度值 
                 MessageBox.Show("设定成功！");
                 control form2 = new control();
                 this.Hide();
