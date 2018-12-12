@@ -57,10 +57,10 @@ namespace 课设服务端
         private void main_Load(object sender, EventArgs e)
         {
             textFreq.Text = "5000";
-            textCurtainIP.Text = "127.0.0.1";
-            textCurtainPort.Text = "7777";
-            textTranLightIP.Text = "127.0.0.1";
-            textTranLightPort.Text = "6666";
+            textCurtainIP.Text = "192.168.0.66";
+            textCurtainPort.Text = "8124";
+            textTranLightIP.Text = "192.168.0.";
+            textTranLightPort.Text = "4001";
         }
     }
 }
