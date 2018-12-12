@@ -50,7 +50,7 @@ namespace 课设服务端
             while (true)
             {
                 labelLight.Text = transducerServer.light.ToString();
-                Thread.Sleep(freq);
+                Thread.Sleep(transducerServer.freq);
             }
         }
     }

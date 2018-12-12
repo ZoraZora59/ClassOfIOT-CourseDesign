@@ -13,8 +13,8 @@ namespace 课设服务端
 
     public partial class main : Form
     {
-        transducerServer ts;
-
+        transducerServer trans;
+        transducerServer curtain;
         public main()
         {
             InitializeComponent();
@@ -22,28 +22,35 @@ namespace 课设服务端
 
         private void buttonSet_Click(object sender, EventArgs e)
         {
-            if (this.textCurtainIP.Text.Length > 15)
-                MessageBox.Show("IP地址异常");
-            else
-            {
-                createSocket();
-            }
-        }
-        public void createSocket()
-        {
-            ts = new transducerServer();
-            ts.ip = this.textCurtainIP.Text;//IP
+            trans = new transducerServer();
+            curtain = new transducerServer();
+            curtain.ip = this.textCurtainIP.Text;//IP
+            trans.ip = this.textTranLightIP.Text;
             var temp = this.textFreq.Text;
             int numTemp;
             int.TryParse(temp, out numTemp);
             transducerServer.freq = numTemp;//频率
             temp = this.textCurtainPort.Text;
             int.TryParse(temp, out numTemp);
-            ts.port = numTemp;//端口
+            curtain.port = numTemp;//端口
+            temp = this.textTranLightPort.Text;
+            int.TryParse(temp, out numTemp);
+            trans.port = numTemp;
             temp = this.textLight.Text;
             int.TryParse(temp, out numTemp);
             transducerServer.light = numTemp;//亮度值 
-            MessageBox.Show("设定成功！");
+            if (trans.socketServerCreate() && curtain.socketServerCreate())
+            {
+                createSocket();
+            }
+            else
+            {
+                MessageBox.Show("连接失败或数据异常");
+            }
+        }
+        public void createSocket()
+        {
+            
             control form2 = new control();
             this.Hide();
             form2.ShowDialog();
@@ -51,9 +58,11 @@ namespace 课设服务端
 
         private void main_Load(object sender, EventArgs e)
         {
-            textFreq.Text = "暂不可用";
+            textFreq.Text = "5000";
             textCurtainIP.Text = "192.168.0.66";
             textCurtainPort.Text = "8124";
+            textTranLightIP.Text = "192.168.0.";
+            textTranLightPort.Text = "4001";
         }
     }
 }

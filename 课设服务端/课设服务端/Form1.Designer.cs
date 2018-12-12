@@ -41,7 +41,7 @@
             this.buttonSet = new System.Windows.Forms.Button();
             this.textTranLightPort = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textTranLight = new System.Windows.Forms.TextBox();
+            this.textTranLightIP = new System.Windows.Forms.TextBox();
             this.labelTranLight = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -97,7 +97,6 @@
             // labelFreq
             // 
             this.labelFreq.AutoSize = true;
-            this.labelFreq.Enabled = false;
             this.labelFreq.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.labelFreq.Location = new System.Drawing.Point(130, 49);
             this.labelFreq.Name = "labelFreq";
@@ -107,7 +106,6 @@
             // 
             // textFreq
             // 
-            this.textFreq.Enabled = false;
             this.textFreq.Font = new System.Drawing.Font("Consolas", 10F);
             this.textFreq.Location = new System.Drawing.Point(266, 51);
             this.textFreq.MaxLength = 5;
@@ -165,14 +163,14 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "端口";
             // 
-            // textTranLight
+            // textTranLightIP
             // 
-            this.textTranLight.Font = new System.Drawing.Font("Consolas", 10F);
-            this.textTranLight.Location = new System.Drawing.Point(135, 147);
-            this.textTranLight.MaxLength = 15;
-            this.textTranLight.Name = "textTranLight";
-            this.textTranLight.Size = new System.Drawing.Size(214, 27);
-            this.textTranLight.TabIndex = 8;
+            this.textTranLightIP.Font = new System.Drawing.Font("Consolas", 10F);
+            this.textTranLightIP.Location = new System.Drawing.Point(135, 147);
+            this.textTranLightIP.MaxLength = 15;
+            this.textTranLightIP.Name = "textTranLightIP";
+            this.textTranLightIP.Size = new System.Drawing.Size(214, 27);
+            this.textTranLightIP.TabIndex = 8;
             // 
             // labelTranLight
             // 
@@ -191,7 +189,7 @@
             this.ClientSize = new System.Drawing.Size(582, 303);
             this.Controls.Add(this.textTranLightPort);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textTranLight);
+            this.Controls.Add(this.textTranLightIP);
             this.Controls.Add(this.labelTranLight);
             this.Controls.Add(this.buttonSet);
             this.Controls.Add(this.textLight);
@@ -230,7 +228,7 @@
         private System.Windows.Forms.Button buttonSet;
         private System.Windows.Forms.TextBox textTranLightPort;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textTranLight;
+        private System.Windows.Forms.TextBox textTranLightIP;
         private System.Windows.Forms.Label labelTranLight;
     }
 }

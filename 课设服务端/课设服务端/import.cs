@@ -33,18 +33,26 @@ namespace 课设服务端
 
         public Socket socketServer;
 
-        public void socketServerCreate()
+        public bool socketServerCreate()
         {
-            socketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint point = new IPEndPoint(IPAddress.Parse(ip), port);
-            socketServer.Connect(point);
-            comCurtainOn1.Replace(" ", "");
-            comCurtainOn2.Replace(" ", "");
-            comCurtainOff1.Replace(" ", "");
-            comCurtainOff2.Replace(" ", "");
-            comLightOn.Replace(" ", "");
-            comLightOff.Replace(" ", "");
-            command_query.Replace(" ", "");
+            try
+            {
+                socketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                IPEndPoint point = new IPEndPoint(IPAddress.Parse(ip), port);
+                socketServer.Connect(point);
+                comCurtainOn1.Replace(" ", "");
+                comCurtainOn2.Replace(" ", "");
+                comCurtainOff1.Replace(" ", "");
+                comCurtainOff2.Replace(" ", "");
+                comLightOn.Replace(" ", "");
+                comLightOff.Replace(" ", "");
+                command_query.Replace(" ", "");
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private void ctr(string command)
