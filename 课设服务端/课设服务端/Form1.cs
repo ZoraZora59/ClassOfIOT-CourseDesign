@@ -36,9 +36,10 @@ namespace 课设服务端
             transducerServer.transPort = numTemp;
             temp = this.textLight.Text;
             int.TryParse(temp, out numTemp);
-            transducerServer.light = numTemp;//亮度值 
+            transducerServer.lightCheck = numTemp;//亮度值 
             if (ts.socketCurtainCreate()&&ts.socketTransCreate())
             {
+                MessageBox.Show("连接成功，请稍等");
                 createSocket();
             }
             else

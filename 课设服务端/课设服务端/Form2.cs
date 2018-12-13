@@ -59,6 +59,15 @@ namespace 课设服务端
         private void timer1_Tick(object sender, EventArgs e)
         {
             labelLight.Text = transducerServer.light.ToString();
+            if(transducerServer.light>transducerServer.lightCheck)
+            {
+                ts.ctrl("CurtainOff");
+            }
+            else
+            {
+                ts.ctrl("CurtainOn");
+            }
+
         }
     }
 }
