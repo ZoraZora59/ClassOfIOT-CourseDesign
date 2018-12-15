@@ -5,7 +5,6 @@
 # Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainView(object):
@@ -19,7 +18,8 @@ class Ui_MainView(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainView.sizePolicy().hasHeightForWidth())
         MainView.setSizePolicy(sizePolicy)
-        MainView.setMinimumSize(QtCore.QSize(0, 0))
+        MainView.setMinimumSize(QtCore.QSize(600, 450))
+        MainView.setMaximumSize(QtCore.QSize(600, 450))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         MainView.setFont(font)
@@ -29,12 +29,9 @@ class Ui_MainView(object):
         self.centralwidget = QtWidgets.QWidget(MainView)
         self.centralwidget.setEnabled(True)
         self.centralwidget.setObjectName("centralwidget")
-        self.ButtonRun = QtWidgets.QPushButton(self.centralwidget)
-        self.ButtonRun.setGeometry(QtCore.QRect(250, 180, 100, 40))
-        self.ButtonRun.setObjectName("ButtonRun")
         self.groupBoxInput = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBoxInput.setEnabled(True)
-        self.groupBoxInput.setGeometry(QtCore.QRect(40, 20, 521, 151))
+        self.groupBoxInput.setGeometry(QtCore.QRect(30, 20, 531, 201))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -85,9 +82,12 @@ class Ui_MainView(object):
         self.textLightCheck.setGeometry(QtCore.QRect(380, 110, 81, 31))
         self.textLightCheck.setReadOnly(False)
         self.textLightCheck.setObjectName("textLightCheck")
+        self.ButtonRun = QtWidgets.QPushButton(self.groupBoxInput)
+        self.ButtonRun.setGeometry(QtCore.QRect(210, 150, 100, 40))
+        self.ButtonRun.setObjectName("ButtonRun")
         self.groupBoxController = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBoxController.setEnabled(True)
-        self.groupBoxController.setGeometry(QtCore.QRect(30, 220, 521, 191))
+        self.groupBoxController.setEnabled(False)
+        self.groupBoxController.setGeometry(QtCore.QRect(30, 220, 531, 191))
         self.groupBoxController.setObjectName("groupBoxController")
         self.ButtonOn = QtWidgets.QPushButton(self.groupBoxController)
         self.ButtonOn.setGeometry(QtCore.QRect(320, 40, 131, 41))
@@ -96,12 +96,13 @@ class Ui_MainView(object):
         self.ButtonOff.setGeometry(QtCore.QRect(320, 110, 131, 41))
         self.ButtonOff.setObjectName("ButtonOff")
         self.OutPutText = QtWidgets.QLabel(self.groupBoxController)
-        self.OutPutText.setGeometry(QtCore.QRect(120, 70, 151, 41))
+        self.OutPutText.setGeometry(QtCore.QRect(120, 40, 151, 41))
         self.OutPutText.setObjectName("OutPutText")
+        self.ButtonCancel = QtWidgets.QPushButton(self.groupBoxController)
+        self.ButtonCancel.setGeometry(QtCore.QRect(110, 110, 121, 41))
+        self.ButtonCancel.setObjectName("ButtonCancel")
         self.groupBoxController.raise_()
         self.groupBoxInput.raise_()
-        self.ButtonRun.raise_()
-        self.groupBoxController.setEnabled(False)
         MainView.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainView)
         self.statusbar.setObjectName("statusbar")
@@ -109,11 +110,19 @@ class Ui_MainView(object):
 
         self.retranslateUi(MainView)
         QtCore.QMetaObject.connectSlotsByName(MainView)
+        MainView.setTabOrder(self.textCurtainIP, self.textCurtainPort)
+        MainView.setTabOrder(self.textCurtainPort, self.textTransIP)
+        MainView.setTabOrder(self.textTransIP, self.textTransPort)
+        MainView.setTabOrder(self.textTransPort, self.textFreq)
+        MainView.setTabOrder(self.textFreq, self.textLightCheck)
+        MainView.setTabOrder(self.textLightCheck, self.ButtonRun)
+        MainView.setTabOrder(self.ButtonRun, self.ButtonOn)
+        MainView.setTabOrder(self.ButtonOn, self.ButtonOff)
+        MainView.setTabOrder(self.ButtonOff, self.ButtonCancel)
 
     def retranslateUi(self, MainView):
         _translate = QtCore.QCoreApplication.translate
         MainView.setWindowTitle(_translate("MainView", "物联网智能教室"))
-        self.ButtonRun.setText(_translate("MainView", "设置确定"))
         self.groupBoxInput.setTitle(_translate("MainView", "设置台"))
         self.lableCurtainIP.setText(_translate("MainView", "窗帘IP地址"))
         self.labelTransIP.setText(_translate("MainView", "传感器IP地址"))
@@ -121,15 +130,18 @@ class Ui_MainView(object):
         self.labelTransPort.setText(_translate("MainView", "端口"))
         self.labelFreq.setText(_translate("MainView", "<html><head/><body><p>自动检测频率（ms）</p></body></html>"))
         self.labelLightCheck.setText(_translate("MainView", "亮度指标"))
+        self.ButtonRun.setText(_translate("MainView", "设置确定"))
         self.groupBoxController.setTitle(_translate("MainView", "控制台"))
         self.ButtonOn.setText(_translate("MainView", "开窗帘"))
         self.ButtonOff.setText(_translate("MainView", "关窗帘"))
         self.OutPutText.setText(_translate("MainView", "亮度值：待测定"))
+        self.ButtonCancel.setText(_translate("MainView", "断开连接"))
         self.textCurtainIP.setText(_translate("MainView", "192.168.0.66"))
         self.textCurtainPort.setText(_translate("MainView", "8124"))
         self.textFreq.setText(_translate("MainView", "500"))
         self.textLightCheck.setText(_translate("MainView", "500"))
         self.textTransIP.setText(_translate("MainView", "192.168.0."))
         self.textTransPort.setText(_translate("MainView", "4001"))
+
 
 
