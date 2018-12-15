@@ -149,12 +149,12 @@ class Ui_MainView(object):
 		self.ButtonOff.setText(_translate("MainView", "关窗帘"))
 		self.OutPutText.setText(_translate("MainView", "亮度值：待测定"))
 		self.ButtonCancel.setText(_translate("MainView", "断开连接"))
-		self.textCurtainIP.setText(_translate("MainView", "127.0.0.1"))
-		self.textCurtainPort.setText(_translate("MainView", "6666"))
-		self.textFreq.setText(_translate("MainView", "500"))
-		self.textLightCheck.setText(_translate("MainView", "500"))
-		self.textTransIP.setText(_translate("MainView", "127.0.0.1"))
-		self.textTransPort.setText(_translate("MainView", "7777"))
+		self.textCurtainIP.setText("192.168.0.66")
+		self.textCurtainPort.setText("8124")
+		self.textFreq.setText("500")
+		self.textLightCheck.setText("500")
+		self.textTransIP.setText("192.168.0.")
+		self.textTransPort.setText("4001")
 
 	def setDown(self):
 		try:
@@ -200,7 +200,6 @@ class Ui_MainView(object):
 
 	def getlight(self, sock):
 		global light
-		result = ""
 		sock.send("\x08\x03\x00\x2a\x00\x01\xa5\x5b".encode())
 		result = sock.recv(1024).decode()
 		print("the result is: %s" % result)
@@ -235,7 +234,10 @@ class Ui_MainView(object):
 			self.statusbar.showMessage("正在打开窗帘...")
 			print("Running open curtain.")
 			global curtainSock
-			curtainSock.send("test".encode())
+			curtainSock.send(
+				"\x18\x00\xf1\x80\x11\x53\xa5\x06\xFE\x82\x0D\x02\xb4\xa1\x00\x00\x00\x00\x00\x00\x08\x00\x00\x00".encode())
+			curtainSock.send(
+				"\x18\x00\xf1\x80\x11\x53\xa5\x06\xFE\x82\x0D\x02\x05\x3c\x00\x00\x00\x00\x00\x00\x08\x00\x00\x00".encode())
 		except all:
 			self.statusbar.showMessage("打开窗帘失败")
 			print("Error in opening curtain.")
@@ -248,7 +250,10 @@ class Ui_MainView(object):
 			self.statusbar.showMessage("正在关闭窗帘...")
 			print("Running close curtain.")
 			global curtainSock
-			curtainSock.send("test".encode())
+			curtainSock.send(
+				"\x18\x00\xf1\x80\x11\x53\xa5\x06\xFE\x82\x0D\x02\xb4\xa1\x00\x00\x00\x00\x00\x00\x08\x00\x00\x01".encode())
+			curtainSock.send(
+				"\x18\x00\xf1\x80\x11\x53\xa5\x06\xFE\x82\x0D\x02\x05\x3c\x00\x00\x00\x00\x00\x00\x08\x00\x00\x01".encode())
 		except all:
 			self.statusbar.showMessage("关闭窗帘失败")
 			print("Error in closing curtain.")
