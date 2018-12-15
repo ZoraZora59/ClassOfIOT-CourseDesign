@@ -146,12 +146,6 @@ class Ui_MainView(object):
 
 	def setDown(self):
 		self.statusbar.showMessage("Getting Message...")
-		curtainIP = ""
-		curtainPort = ""
-		transIP = ""
-		transPort = ""
-		freq = ""
-		check = ""
 		try:
 			transIP = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
 			transPort = self.textTransPort.toPlainText()
@@ -159,11 +153,14 @@ class Ui_MainView(object):
 			curtainPort = self.textCurtainPort.toPlainText()
 			freq = self.textFreq.toPlainText()
 			check = self.textLightCheck.toPlainText()
-		except:
+		except all:
 			print("Error in getting message.")
 		else:
 			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
+			self.sendCommand()
 
 	def sendCommand(self):
+		print("Running SendCommand")
 		pass
+
 
