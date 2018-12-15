@@ -176,8 +176,16 @@ class Ui_MainView(object):
 			print("Running CancelConnection.")
 		except all:
 			print("Error in cancelling connection.")
-		self.groupBoxInput.setEnabled(True)
-		self.groupBoxController.setEnabled(False)
+		else:
+			# self.OutPutText.setText("亮度值：待测定")
+			# self.textCurtainIP.setText("192.168.0.66")
+			# self.textCurtainPort.setText("8124")
+			# self.textFreq.setText("500")
+			# self.textLightCheck.setText("500")
+			# self.textTransIP.setText("192.168.0.")
+			# self.textTransPort.setText("4001")
+			self.groupBoxInput.setEnabled(True)
+			self.groupBoxController.setEnabled(False)
 		pass
 
 	def openCurtain(self):
