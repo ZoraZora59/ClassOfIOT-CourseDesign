@@ -166,6 +166,7 @@ class Ui_MainView(object):
 			self.statusbar.showMessage("获取信息失败")
 			print("Error in getting message.")
 		else:
+			self.statusbar.showMessage("连接建立，控制台已激活")
 			self.groupBoxInput.setEnabled(False)
 			self.groupBoxController.setEnabled(True)
 
@@ -188,6 +189,7 @@ class Ui_MainView(object):
 			# self.textLightCheck.setText("500")
 			# self.textTransIP.setText("192.168.0.")
 			# self.textTransPort.setText("4001")
+			self.statusbar.showMessage("连接已关闭")
 			self.groupBoxInput.setEnabled(True)
 			self.groupBoxController.setEnabled(False)
 		pass
@@ -199,6 +201,8 @@ class Ui_MainView(object):
 		except all:
 			self.statusbar.showMessage("打开窗帘失败")
 			print("Error in opening curtain.")
+		else:
+			self.statusbar.showMessage("命令已发送")
 		pass
 
 	def closeCurtain(self):
@@ -208,4 +212,6 @@ class Ui_MainView(object):
 		except all:
 			self.statusbar.showMessage("关闭窗帘失败")
 			print("Error in closing curtain.")
+		else:
+			self.statusbar.showMessage("命令已发送")
 		pass
