@@ -5,6 +5,7 @@
 # Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -21,6 +22,7 @@ class Ui_MainView(object):
 		MainView.setSizePolicy(sizePolicy)
 		MainView.setMinimumSize(QtCore.QSize(600, 450))
 		MainView.setMaximumSize(QtCore.QSize(600, 450))
+		MainView.setFixedSize(QtCore.QSize(600, 450))
 		font = QtGui.QFont()
 		font.setFamily("微软雅黑")
 		MainView.setFont(font)
@@ -167,8 +169,13 @@ class Ui_MainView(object):
 			print("Error in getting message.")
 		else:
 			self.statusbar.showMessage("连接建立，控制台已激活")
+			self.tk()
 			self.groupBoxInput.setEnabled(False)
 			self.groupBoxController.setEnabled(True)
+
+	def tk(self):
+		print("计时器启动")
+		pass
 
 	def sendCommand(self):
 		print("Running SendCommand.")
@@ -182,7 +189,7 @@ class Ui_MainView(object):
 			print("Error in cancelling connection.")
 			self.statusbar.showMessage("断开连接失败")
 		else:
-			# self.OutPutText.setText("亮度值：待测定")
+			self.OutPutText.setText("亮度值：待测定")
 			# self.textCurtainIP.setText("192.168.0.66")
 			# self.textCurtainPort.setText("8124")
 			# self.textFreq.setText("500")
