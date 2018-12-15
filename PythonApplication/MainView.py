@@ -7,9 +7,16 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import socket
 
 
 class Ui_MainView(object):
+
+	global transSock, curtainSock
+	global freq
+
+	freq = 0
+
 	def setupUi(self, MainView):
 		MainView.setObjectName("MainView")
 		MainView.setWindowModality(QtCore.Qt.ApplicationModal)
@@ -142,31 +149,34 @@ class Ui_MainView(object):
 		self.ButtonOff.setText(_translate("MainView", "关窗帘"))
 		self.OutPutText.setText(_translate("MainView", "亮度值：待测定"))
 		self.ButtonCancel.setText(_translate("MainView", "断开连接"))
-		self.textCurtainIP.setText(_translate("MainView", "192.168.0.66"))
-		self.textCurtainPort.setText(_translate("MainView", "8124"))
+		self.textCurtainIP.setText(_translate("MainView", "127.0.0.1"))
+		self.textCurtainPort.setText(_translate("MainView", "6666"))
 		self.textFreq.setText(_translate("MainView", "500"))
 		self.textLightCheck.setText(_translate("MainView", "500"))
-		self.textTransIP.setText(_translate("MainView", "192.168.0."))
-		self.textTransPort.setText(_translate("MainView", "4001"))
+		self.textTransIP.setText(_translate("MainView", "127.0.0.1"))
+		self.textTransPort.setText(_translate("MainView", "7777"))
 
 	def setDown(self):
 		try:
+			global transSock, curtainSock
+			global freq
 			self.statusbar.showMessage("正在获取数据...")
 			transIP = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
-			transPort = self.textTransPort.toPlainText()
+			transPort = int(self.textTransPort.toPlainText())
 			curtainIP = self.textCurtainIP.toPlainText()
-			curtainPort = self.textCurtainPort.toPlainText()
+			curtainPort = int(self.textCurtainPort.toPlainText())
 			freq = self.textFreq.toPlainText()
 			check = self.textLightCheck.toPlainText()
 			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
 			self.statusbar.showMessage("正在建立连接...")
-			self.sendCommand()
+			transSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			curtainSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			transSock.connect((transIP, transPort))
+			curtainSock.connect((curtainIP, curtainPort))
+			self.getlight(transSock)
 		except ConnectionError:
 			self.statusbar.showMessage("建立连接失败")
 			print("Error in connecting.")
-		except all:
-			self.statusbar.showMessage("获取信息失败")
-			print("Error in getting message.")
 		else:
 			self.statusbar.showMessage("连接建立，控制台已激活")
 			self.tk()
@@ -177,14 +187,21 @@ class Ui_MainView(object):
 		print("计时器启动")
 		pass
 
-	def sendCommand(self):
-		print("Running SendCommand.")
-		pass
+	def getlight(self, sock):
+		result = ""
+		sock.send("\x08\x03\x00\x2a\x00\x01\xa5\x5b".encode())
+		result = sock.recv(1024).decode()
+		print("the result is: %s" % result)
+		light = (int(result[3], 0x10) << 8) | (int(result[4], 0x10) & 0xff)
+		print("the light is: %d" % light)
 
 	def cancelConnection(self):
 		try:
+			global transSock, curtainSock
 			print("Running CancelConnection.")
 			self.statusbar.showMessage("正在断开连接")
+			transSock.close()
+			curtainSock.close()
 		except all:
 			print("Error in cancelling connection.")
 			self.statusbar.showMessage("断开连接失败")
@@ -205,6 +222,8 @@ class Ui_MainView(object):
 		try:
 			self.statusbar.showMessage("正在打开窗帘...")
 			print("Running open curtain.")
+			global curtainSock
+			curtainSock.send("test".encode())
 		except all:
 			self.statusbar.showMessage("打开窗帘失败")
 			print("Error in opening curtain.")
@@ -216,6 +235,8 @@ class Ui_MainView(object):
 		try:
 			self.statusbar.showMessage("正在关闭窗帘...")
 			print("Running close curtain.")
+			global curtainSock
+			curtainSock.send("test".encode())
 		except all:
 			self.statusbar.showMessage("关闭窗帘失败")
 			print("Error in closing curtain.")
