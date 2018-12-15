@@ -11,11 +11,8 @@ import socket
 
 
 class Ui_MainView(object):
-
 	global transSock, curtainSock
-	global freq
-
-	freq = 0
+	global light
 
 	def setupUi(self, MainView):
 		MainView.setObjectName("MainView")
@@ -159,13 +156,12 @@ class Ui_MainView(object):
 	def setDown(self):
 		try:
 			global transSock, curtainSock
-			global freq
 			self.statusbar.showMessage("正在获取数据...")
 			transIP = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
 			transPort = int(self.textTransPort.toPlainText())
 			curtainIP = self.textCurtainIP.toPlainText()
 			curtainPort = int(self.textCurtainPort.toPlainText())
-			freq = self.textFreq.toPlainText()
+			freq = int(self.textFreq.toPlainText())
 			check = self.textLightCheck.toPlainText()
 			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
 			self.statusbar.showMessage("正在建立连接...")
@@ -173,21 +169,29 @@ class Ui_MainView(object):
 			curtainSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			transSock.connect((transIP, transPort))
 			curtainSock.connect((curtainIP, curtainPort))
-			self.getlight(transSock)
 		except ConnectionError:
 			self.statusbar.showMessage("建立连接失败")
 			print("Error in connecting.")
 		else:
 			self.statusbar.showMessage("连接建立，控制台已激活")
-			self.tk()
+			self.tk(freq)
 			self.groupBoxInput.setEnabled(False)
 			self.groupBoxController.setEnabled(True)
 
-	def tk(self):
+	def tk(self, freq):
 		print("计时器启动")
-		pass
+		self.timer = QtCore.QTimer()
+		self.timer.setInterval(freq)
+		self.timer.timeout.connect(self.showlight)
+		self.timer.start()
+
+	def showlight(self):
+		global light
+		self.getlight(transSock)
+		self.OutPutText.setText(str(light))
 
 	def getlight(self, sock):
+		global light
 		result = ""
 		sock.send("\x08\x03\x00\x2a\x00\x01\xa5\x5b".encode())
 		result = sock.recv(1024).decode()
