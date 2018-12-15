@@ -6,8 +6,11 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
 import socket
+import threading
+import time
+
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainView(object):
@@ -174,16 +177,21 @@ class Ui_MainView(object):
 			print("Error in connecting.")
 		else:
 			self.statusbar.showMessage("连接建立，控制台已激活")
-			self.tk(freq)
+			t1 = threading.Thread(target=self.tk, args=(freq,))
+			t1.start()
+			# self.tk(freq)
 			self.groupBoxInput.setEnabled(False)
 			self.groupBoxController.setEnabled(True)
 
 	def tk(self, freq):
 		print("计时器启动")
-		self.timer = QtCore.QTimer()
-		self.timer.setInterval(freq)
-		self.timer.timeout.connect(self.showlight)
-		self.timer.start()
+		while True:
+			self.showlight()
+			time.sleep(freq)
+		# self.timer = QtCore.QTimer()
+		# self.timer.setInterval(freq)
+		# self.timer.timeout.connect(self.showlight)
+		# self.timer.start()
 
 	def showlight(self):
 		global light
