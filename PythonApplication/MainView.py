@@ -91,6 +91,7 @@ class Ui_MainView(object):
 		self.ButtonOn = QtWidgets.QPushButton(self.groupBoxController)
 		self.ButtonOn.setGeometry(QtCore.QRect(320, 40, 131, 41))
 		self.ButtonOn.setObjectName("ButtonOn")
+		self.ButtonOn.clicked.connect(self.lightOn)
 		self.ButtonOff = QtWidgets.QPushButton(self.groupBoxController)
 		self.ButtonOff.setGeometry(QtCore.QRect(320, 110, 131, 41))
 		self.ButtonOff.setObjectName("ButtonOff")
@@ -163,4 +164,5 @@ class Ui_MainView(object):
 		print("Running SendCommand")
 		pass
 
-
+	def lightOn(self):
+		pass
