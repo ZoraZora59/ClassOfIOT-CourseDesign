@@ -50,8 +50,6 @@ class Ui_MainView(object):
         self.textTransIP.setObjectName("textTransIP")
         self.textCurtainIP = QtWidgets.QTextBrowser(self.groupBoxInput)
         self.textCurtainIP.setGeometry(QtCore.QRect(110, 20, 241, 31))
-        self.textCurtainIP.setMouseTracking(False)
-        self.textCurtainIP.setTabletTracking(False)
         self.textCurtainIP.setReadOnly(False)
         self.textCurtainIP.setObjectName("textCurtainIP")
         self.labelCurtainPort = QtWidgets.QLabel(self.groupBoxInput)
@@ -108,6 +106,8 @@ class Ui_MainView(object):
         self.statusbar.setObjectName("statusbar")
         MainView.setStatusBar(self.statusbar)
 
+        self.ButtonRun.clicked.connect(self.setDown)
+
         self.retranslateUi(MainView)
         QtCore.QMetaObject.connectSlotsByName(MainView)
         MainView.setTabOrder(self.textCurtainIP, self.textCurtainPort)
@@ -143,5 +143,11 @@ class Ui_MainView(object):
         self.textTransIP.setText(_translate("MainView", "192.168.0."))
         self.textTransPort.setText(_translate("MainView", "4001"))
 
-
+    def setDown(self):
+        self.statusbar.showMessage("Getting Message...")
+        try:
+            textMessage = self.textTransIP.text  # 获取文本框内容
+        except:
+            print("Error in getting text message.")
+        print('Message: %s ' % (textMessage))
 
