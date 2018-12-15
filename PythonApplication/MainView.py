@@ -172,15 +172,24 @@ class Ui_MainView(object):
 		pass
 
 	def cancelConnection(self):
-		print("Running CancelConnection.")
+		try:
+			print("Running CancelConnection.")
+		except all:
+			print("Error in cancelling connection.")
 		self.groupBoxInput.setEnabled(True)
 		self.groupBoxController.setEnabled(False)
 		pass
 
 	def openCurtain(self):
-		print("Running open curtain.")
+		try:
+			print("Running open curtain.")
+		except all:
+			print("Error in opening curtain.")
 		pass
 
 	def closeCurtain(self):
-		print("Running close curtain.")
+		try:
+			print("Running close curtain.")
+		except all:
+			print("Error in closing curtain.")
 		pass
