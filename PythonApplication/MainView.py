@@ -146,7 +146,7 @@ class Ui_MainView(object):
     def setDown(self):
         self.statusbar.showMessage("Getting Message...")
         try:
-            textMessage = self.textTransIP.text  # 获取文本框内容
+            textMessage = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
         except:
             print("Error in getting text message.")
         print('Message: %s ' % (textMessage))
