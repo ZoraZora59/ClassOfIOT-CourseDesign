@@ -108,6 +108,9 @@ class Ui_MainView(object):
 		MainView.setStatusBar(self.statusbar)
 
 		self.ButtonRun.clicked.connect(self.setDown)
+		self.ButtonCancel.clicked.connect(self.cancelConnection)
+		self.ButtonOn.clicked.connect(self.openCurtain)
+		self.ButtonOff.clicked.connect(self.closeCurtain)
 
 		self.retranslateUi(MainView)
 		QtCore.QMetaObject.connectSlotsByName(MainView)
@@ -153,14 +156,31 @@ class Ui_MainView(object):
 			curtainPort = self.textCurtainPort.toPlainText()
 			freq = self.textFreq.toPlainText()
 			check = self.textLightCheck.toPlainText()
+			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (
+			transIP, transPort, curtainIP, curtainPort, freq, check))
+			self.sendCommand()
+		except ConnectionError:
+			print("Error in connecting.")
 		except all:
 			print("Error in getting message.")
 		else:
-			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
-			self.sendCommand()
+			self.groupBoxInput.setEnabled(False)
+			self.groupBoxController.setEnabled(True)
 
 	def sendCommand(self):
-		print("Running SendCommand")
+		print("Running SendCommand.")
 		pass
 
+	def cancelConnection(self):
+		print("Running CancelConnection.")
+		self.groupBoxInput.setEnabled(True)
+		self.groupBoxController.setEnabled(False)
+		pass
 
+	def openCurtain(self):
+		print("Running open curtain.")
+		pass
+
+	def closeCurtain(self):
+		print("Running close curtain.")
+		pass
