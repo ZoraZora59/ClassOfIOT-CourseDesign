@@ -181,9 +181,6 @@ class Ui_MainView(object):
 		self.groupBoxController.setEnabled(False)
 		pass
 
-<<<<<<< HEAD
-	def lightOn(self):
-=======
 	def openCurtain(self):
 		try:
 			print("Running open curtain.")
@@ -196,5 +193,4 @@ class Ui_MainView(object):
 			print("Running close curtain.")
 		except all:
 			print("Error in closing curtain.")
->>>>>>> 192200cde76cea2c62363d725a3ab747e6496a0e
 		pass
