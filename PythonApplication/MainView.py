@@ -153,10 +153,16 @@ class Ui_MainView(object):
 		freq = ""
 		check = ""
 		try:
-			transIP= self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
+			transIP = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
+			transPort = self.textTransPort.toPlainText()
+			curtainIP = self.textCurtainIP.toPlainText()
+			curtainPort = self.textCurtainPort.toPlainText()
+			freq = self.textFreq.toPlainText()
+			check = self.textLightCheck.toPlainText()
 		except:
 			print("Error in getting message.")
-		print('Message: %s ' % (transIP))
+		else:
+			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
 
 	def sendCommand(self):
 		pass
