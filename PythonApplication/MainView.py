@@ -91,7 +91,6 @@ class Ui_MainView(object):
 		self.ButtonOn = QtWidgets.QPushButton(self.groupBoxController)
 		self.ButtonOn.setGeometry(QtCore.QRect(320, 40, 131, 41))
 		self.ButtonOn.setObjectName("ButtonOn")
-		self.ButtonOn.clicked.connect(self.lightOn)
 		self.ButtonOff = QtWidgets.QPushButton(self.groupBoxController)
 		self.ButtonOff.setGeometry(QtCore.QRect(320, 110, 131, 41))
 		self.ButtonOff.setObjectName("ButtonOff")
@@ -177,21 +176,10 @@ class Ui_MainView(object):
 			print("Running CancelConnection.")
 		except all:
 			print("Error in cancelling connection.")
-		else:
-			# self.OutPutText.setText("亮度值：待测定")
-			# self.textCurtainIP.setText("192.168.0.66")
-			# self.textCurtainPort.setText("8124")
-			# self.textFreq.setText("500")
-			# self.textLightCheck.setText("500")
-			# self.textTransIP.setText("192.168.0.")
-			# self.textTransPort.setText("4001")
-			self.groupBoxInput.setEnabled(True)
-			self.groupBoxController.setEnabled(False)
+		self.groupBoxInput.setEnabled(True)
+		self.groupBoxController.setEnabled(False)
 		pass
 
-<<<<<<< HEAD
-	def lightOn(self):
-=======
 	def openCurtain(self):
 		try:
 			print("Running open curtain.")
@@ -204,5 +192,4 @@ class Ui_MainView(object):
 			print("Running close curtain.")
 		except all:
 			print("Error in closing curtain.")
->>>>>>> 192200cde76cea2c62363d725a3ab747e6496a0e
 		pass
