@@ -148,20 +148,22 @@ class Ui_MainView(object):
 		self.textTransPort.setText(_translate("MainView", "4001"))
 
 	def setDown(self):
-		self.statusbar.showMessage("Getting Message...")
 		try:
+			self.statusbar.showMessage("正在获取数据...")
 			transIP = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
 			transPort = self.textTransPort.toPlainText()
 			curtainIP = self.textCurtainIP.toPlainText()
 			curtainPort = self.textCurtainPort.toPlainText()
 			freq = self.textFreq.toPlainText()
 			check = self.textLightCheck.toPlainText()
-			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (
-			transIP, transPort, curtainIP, curtainPort, freq, check))
+			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
+			self.statusbar.showMessage("正在建立连接...")
 			self.sendCommand()
 		except ConnectionError:
+			self.statusbar.showMessage("建立连接失败")
 			print("Error in connecting.")
 		except all:
+			self.statusbar.showMessage("获取信息失败")
 			print("Error in getting message.")
 		else:
 			self.groupBoxInput.setEnabled(False)
@@ -174,8 +176,10 @@ class Ui_MainView(object):
 	def cancelConnection(self):
 		try:
 			print("Running CancelConnection.")
+			self.statusbar.showMessage("正在断开连接")
 		except all:
 			print("Error in cancelling connection.")
+			self.statusbar.showMessage("断开连接失败")
 		else:
 			# self.OutPutText.setText("亮度值：待测定")
 			# self.textCurtainIP.setText("192.168.0.66")
@@ -190,14 +194,18 @@ class Ui_MainView(object):
 
 	def openCurtain(self):
 		try:
+			self.statusbar.showMessage("正在打开窗帘...")
 			print("Running open curtain.")
 		except all:
+			self.statusbar.showMessage("打开窗帘失败")
 			print("Error in opening curtain.")
 		pass
 
 	def closeCurtain(self):
 		try:
+			self.statusbar.showMessage("正在关闭窗帘...")
 			print("Running close curtain.")
 		except all:
+			self.statusbar.showMessage("关闭窗帘失败")
 			print("Error in closing curtain.")
 		pass
