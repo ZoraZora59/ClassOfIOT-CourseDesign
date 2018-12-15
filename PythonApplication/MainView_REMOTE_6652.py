@@ -219,9 +219,6 @@ class Ui_MainView(object):
 		except all:
 			self.statusbar.showMessage("关闭窗帘失败")
 			print("Error in closing curtain.")
-<<<<<<< HEAD
-=======
 		else:
 			self.statusbar.showMessage("命令已发送")
->>>>>>> 6f70995c54e1f970ee9486023367f3f6b68fb31d
 		pass

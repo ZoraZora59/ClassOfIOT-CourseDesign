@@ -5,7 +5,6 @@
 # Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -22,7 +21,6 @@ class Ui_MainView(object):
 		MainView.setSizePolicy(sizePolicy)
 		MainView.setMinimumSize(QtCore.QSize(600, 450))
 		MainView.setMaximumSize(QtCore.QSize(600, 450))
-		MainView.setFixedSize(QtCore.QSize(600, 450))
 		font = QtGui.QFont()
 		font.setFamily("微软雅黑")
 		MainView.setFont(font)
@@ -93,6 +91,7 @@ class Ui_MainView(object):
 		self.ButtonOn = QtWidgets.QPushButton(self.groupBoxController)
 		self.ButtonOn.setGeometry(QtCore.QRect(320, 40, 131, 41))
 		self.ButtonOn.setObjectName("ButtonOn")
+		self.ButtonOn.clicked.connect(self.lightOn)
 		self.ButtonOff = QtWidgets.QPushButton(self.groupBoxController)
 		self.ButtonOff.setGeometry(QtCore.QRect(320, 110, 131, 41))
 		self.ButtonOff.setObjectName("ButtonOff")
@@ -150,32 +149,24 @@ class Ui_MainView(object):
 		self.textTransPort.setText(_translate("MainView", "4001"))
 
 	def setDown(self):
+		self.statusbar.showMessage("Getting Message...")
 		try:
-			self.statusbar.showMessage("正在获取数据...")
 			transIP = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
 			transPort = self.textTransPort.toPlainText()
 			curtainIP = self.textCurtainIP.toPlainText()
 			curtainPort = self.textCurtainPort.toPlainText()
 			freq = self.textFreq.toPlainText()
 			check = self.textLightCheck.toPlainText()
-			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
-			self.statusbar.showMessage("正在建立连接...")
+			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (
+			transIP, transPort, curtainIP, curtainPort, freq, check))
 			self.sendCommand()
 		except ConnectionError:
-			self.statusbar.showMessage("建立连接失败")
 			print("Error in connecting.")
 		except all:
-			self.statusbar.showMessage("获取信息失败")
 			print("Error in getting message.")
 		else:
-			self.statusbar.showMessage("连接建立，控制台已激活")
-			self.tk()
 			self.groupBoxInput.setEnabled(False)
 			self.groupBoxController.setEnabled(True)
-
-	def tk(self):
-		print("计时器启动")
-		pass
 
 	def sendCommand(self):
 		print("Running SendCommand.")
@@ -184,44 +175,22 @@ class Ui_MainView(object):
 	def cancelConnection(self):
 		try:
 			print("Running CancelConnection.")
-			self.statusbar.showMessage("正在断开连接")
 		except all:
 			print("Error in cancelling connection.")
-			self.statusbar.showMessage("断开连接失败")
-		else:
-			self.OutPutText.setText("亮度值：待测定")
-			# self.textCurtainIP.setText("192.168.0.66")
-			# self.textCurtainPort.setText("8124")
-			# self.textFreq.setText("500")
-			# self.textLightCheck.setText("500")
-			# self.textTransIP.setText("192.168.0.")
-			# self.textTransPort.setText("4001")
-			self.statusbar.showMessage("连接已关闭")
-			self.groupBoxInput.setEnabled(True)
-			self.groupBoxController.setEnabled(False)
+		self.groupBoxInput.setEnabled(True)
+		self.groupBoxController.setEnabled(False)
 		pass
 
 	def openCurtain(self):
 		try:
-			self.statusbar.showMessage("正在打开窗帘...")
 			print("Running open curtain.")
 		except all:
-			self.statusbar.showMessage("打开窗帘失败")
 			print("Error in opening curtain.")
-		else:
-			self.statusbar.showMessage("命令已发送")
 		pass
 
 	def closeCurtain(self):
 		try:
-			self.statusbar.showMessage("正在关闭窗帘...")
 			print("Running close curtain.")
 		except all:
-			self.statusbar.showMessage("关闭窗帘失败")
 			print("Error in closing curtain.")
-<<<<<<< HEAD
-=======
-		else:
-			self.statusbar.showMessage("命令已发送")
->>>>>>> 6f70995c54e1f970ee9486023367f3f6b68fb31d
 		pass
