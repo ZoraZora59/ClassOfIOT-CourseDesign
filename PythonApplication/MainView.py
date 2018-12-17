@@ -15,7 +15,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainView(object):
 	global transSock, curtainSock
-	global light
+	global light, check
 	def setupUi(self, MainView):# 界面设计
 		MainView.setObjectName("MainView")
 		MainView.setWindowModality(QtCore.Qt.ApplicationModal)
@@ -140,7 +140,7 @@ class Ui_MainView(object):
 		self.labelTransIP.setText(_translate("MainView", "传感器IP地址"))
 		self.labelCurtainPort.setText(_translate("MainView", "端口"))
 		self.labelTransPort.setText(_translate("MainView", "端口"))
-		self.labelFreq.setText(_translate("MainView", "<html><head/><body><p>自动检测频率（ms）</p></body></html>"))
+		self.labelFreq.setText(_translate("MainView", "<html><head/><body><p>自动检测频率（s）</p></body></html>"))
 		self.labelLightCheck.setText(_translate("MainView", "亮度指标"))
 		self.ButtonRun.setText(_translate("MainView", "设置确定"))
 		self.groupBoxController.setTitle(_translate("MainView", "控制台"))
@@ -150,21 +150,22 @@ class Ui_MainView(object):
 		self.ButtonCancel.setText(_translate("MainView", "断开连接"))
 		self.textCurtainIP.setText("192.168.0.66")
 		self.textCurtainPort.setText("8124")
-		self.textFreq.setText("500")
-		self.textLightCheck.setText("500")
+		self.textFreq.setText("2")
+		self.textLightCheck.setText("600")
 		self.textTransIP.setText("192.168.0.")
 		self.textTransPort.setText("4001")
 
 	def setDown(self):  # 确认按钮的槽函数
 		try:
 			global transSock, curtainSock  # 将两个socket设为全局
+			global check
 			self.statusbar.showMessage("正在获取数据...")
 			transIP = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
 			transPort = int(self.textTransPort.toPlainText())
 			curtainIP = self.textCurtainIP.toPlainText()
 			curtainPort = int(self.textCurtainPort.toPlainText())
 			freq = int(self.textFreq.toPlainText())
-			check = self.textLightCheck.toPlainText()
+			check = int(self.textLightCheck.toPlainText())
 			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
 			self.statusbar.showMessage("正在建立连接...")
 			transSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # 建立socket
@@ -196,8 +197,12 @@ class Ui_MainView(object):
 		# self.timer.start()
 
 	def showlight(self):
-		global light
+		global light, check
 		self.getlight(transSock)
+		if light > check:
+			self.closeCurtain()
+		else:
+			self.openCurtain()
 		self.OutPutText.setText(str(light))
 
 	def getlight(self, sock):
