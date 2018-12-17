@@ -16,8 +16,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainView(object):
 	global transSock, curtainSock
 	global light
-
-	def setupUi(self, MainView):
+	def setupUi(self, MainView):# 界面设计
 		MainView.setObjectName("MainView")
 		MainView.setWindowModality(QtCore.Qt.ApplicationModal)
 		MainView.setEnabled(True)
@@ -116,7 +115,7 @@ class Ui_MainView(object):
 		self.statusbar.setObjectName("statusbar")
 		MainView.setStatusBar(self.statusbar)
 
-		self.ButtonRun.clicked.connect(self.setDown)
+		self.ButtonRun.clicked.connect(self.setDown)  # 信号连接
 		self.ButtonCancel.clicked.connect(self.cancelConnection)
 		self.ButtonOn.clicked.connect(self.openCurtain)
 		self.ButtonOff.clicked.connect(self.closeCurtain)
@@ -134,7 +133,7 @@ class Ui_MainView(object):
 		MainView.setTabOrder(self.ButtonOff, self.ButtonCancel)
 
 	def retranslateUi(self, MainView):
-		_translate = QtCore.QCoreApplication.translate
+		_translate = QtCore.QCoreApplication.translate  # 页面内容填充个
 		MainView.setWindowTitle(_translate("MainView", "物联网智能教室"))
 		self.groupBoxInput.setTitle(_translate("MainView", "设置台"))
 		self.lableCurtainIP.setText(_translate("MainView", "窗帘IP地址"))
@@ -156,9 +155,9 @@ class Ui_MainView(object):
 		self.textTransIP.setText("192.168.0.")
 		self.textTransPort.setText("4001")
 
-	def setDown(self):
+	def setDown(self):  # 确认按钮的槽函数
 		try:
-			global transSock, curtainSock
+			global transSock, curtainSock  # 将两个socket设为全局
 			self.statusbar.showMessage("正在获取数据...")
 			transIP = self.textTransIP.toPlainText()  # 获取文本框内容  toPlainText
 			transPort = int(self.textTransPort.toPlainText())
@@ -168,13 +167,16 @@ class Ui_MainView(object):
 			check = self.textLightCheck.toPlainText()
 			print('Message: transIP %s transPort %s curtainIP %s curtainPort %s freq %s check %s' % (transIP, transPort, curtainIP, curtainPort, freq, check))
 			self.statusbar.showMessage("正在建立连接...")
-			transSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			transSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # 建立socket
 			curtainSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			transSock.connect((transIP, transPort))
 			curtainSock.connect((curtainIP, curtainPort))
-		except ConnectionError:
+		except ConnectionError:  # 连接异常抛出
 			self.statusbar.showMessage("建立连接失败")
 			print("Error in connecting.")
+		except all:  # 未知异常抛出
+			self.statusbar.showMessage("遇到未知错误")
+			print("Error Unknown.")
 		else:
 			self.statusbar.showMessage("连接建立，控制台已激活")
 			t1 = threading.Thread(target=self.tk, args=(freq,))
@@ -185,7 +187,7 @@ class Ui_MainView(object):
 
 	def tk(self, freq):
 		print("计时器启动")
-		while True:
+		while True:  # 采用建立单独的线程无限循环来获取光照度的的方式
 			self.showlight()
 			time.sleep(freq)
 		# self.timer = QtCore.QTimer()
@@ -200,7 +202,7 @@ class Ui_MainView(object):
 
 	def getlight(self, sock):
 		global light
-		sock.send("\x08\x03\x00\x2a\x00\x01\xa5\x5b".encode())
+		sock.send("\x08\x03\x00\x2a\x00\x01\xa5\x5b".encode())  # 发往传感器的问询信息
 		result = sock.recv(1024).decode()
 		print("the result is: %s" % result)
 		light = (int(result[3], 0x10) << 8) | (int(result[4], 0x10) & 0xff)
@@ -227,7 +229,7 @@ class Ui_MainView(object):
 			self.statusbar.showMessage("连接已关闭")
 			self.groupBoxInput.setEnabled(True)
 			self.groupBoxController.setEnabled(False)
-		pass
+		# pass
 
 	def openCurtain(self):
 		try:
@@ -243,7 +245,7 @@ class Ui_MainView(object):
 			print("Error in opening curtain.")
 		else:
 			self.statusbar.showMessage("命令已发送")
-		pass
+		# pass
 
 	def closeCurtain(self):
 		try:
@@ -259,4 +261,4 @@ class Ui_MainView(object):
 			print("Error in closing curtain.")
 		else:
 			self.statusbar.showMessage("命令已发送")
-		pass
+		# pass
